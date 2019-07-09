@@ -1,0 +1,121 @@
+#include<fstream.h>
+#include<conio.h>
+#include<stdlib.h>
+#include<stdio.h>
+#include<string.h>
+#include<ctype.h>
+#include<dos.h>
+class arena
+{  public:int x1,x2,y1,y2;
+	  int pos;
+
+}
+are[80][50];
+class snake
+{ public:int x1,x2,y1,y2;
+
+
+}
+mohit[10];
+void nocursor(int x1,int y1,int x2,int y2)
+	{     textmode(C4350);
+		window(x1,y1,x2,y2);
+		textbackground(RED);
+	       //	textcolor(LIGHTGREEN);
+		clrscr();
+
+	}
+
+void cursor(int x1,int y1,int x2,int y2)
+	{     textmode(C4350);
+		window(x1,y1,x2,y2);
+		textbackground(CYAN);
+	       //	textcolor(LIGHTGREEN);
+		clrscr();
+
+	}
+void box(int x1,int y1,int x2,int y2)
+{       int i=0;
+	clrscr();
+	textmode(C4350);
+       //	window(x1,y1,x2,y2);
+		textbackground(RED);
+		textcolor(YELLOW);
+		clrscr();
+
+
+  }
+void twod()
+{   x=1;
+for(int i=0;i<80;i++)
+   for(int j=0;j<50;j++)
+   { are[i][j].x1=2+i;
+     are[i][j].x2=2.5+i;
+     are[i][j].y1=2+j;
+     are[i][j].y2=2.5+j;
+     are[i][j].pos=x;
+     x++;
+
+
+
+   }
+
+}
+
+void main()
+{ clrscr();
+box(5,5,25,25);
+twod();
+char ch;
+int a=0,b=0,c,i=0,line=0;
+while(!kbhit())
+{
+cursor(6+i,6,10.5+i,6.5);
+nocursor(6+i,6,6.5+i,6.5);
+delay(500);
+	      i++;
+}
+if(kbhit())
+{
+ch=getch();
+  if(ch==0)
+  ch=getch();
+
+
+  switch(line)
+  { case 0:
+	switch(ch)
+	{ case 72:cursor(6+i,7,10.5+i,7.5);
+		  line=1;
+			break;
+	}
+    case 1:
+	   switch(ch)
+	   { case 77:
+	   }
+
+
+  }
+
+
+}
+
+
+
+
+
+
+
+
+//cout<<"iksdjfilksdtgklndffgfbjk.dffjkghkjdfghn";
+
+
+//nocursor(16,16,24,24);
+//nocursor(16,6,24,14);
+//nocursor(6,16,14,24);
+
+
+
+
+getch();
+}

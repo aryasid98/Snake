@@ -1,0 +1,219 @@
+#include<fstream.h>
+#include<conio.h>
+#include<stdlib.h>
+#include<stdio.h>
+#include<string.h>
+#include<ctype.h>
+#include<dos.h>
+class arena
+{  public:int x1,x2,y1,y2;
+	  int horz,vert;
+
+}are;
+class snake
+{ public:int x1,x2,y1,y2;
+	int no;
+
+}
+saanp,pseudo;
+int i,j;
+int X1,X2,Y1,Y2;
+int X_1,X_2,Y_1,Y_2;
+
+void nocursor(int x1,int y1,int x2,int y2)
+	{     textmode(C4350);
+		window(x1,y1,x2,y2);
+		textbackground(RED);
+	       //	textcolor(LIGHTGREEN);
+		clrscr();
+
+	}
+
+void cursor(int x1,int y1,int x2,int y2)
+	{     textmode(C4350);
+		window(x1,y1,x2,y2);
+		textbackground(BLUE);
+	       //	textcolor(LIGHTGREEN);
+		clrscr();
+
+	}
+void box(int x1,int y1,int x2,int y2)
+{
+	clrscr();
+	textmode(C4350);
+	window(x1,y1,x2,y2);
+	textbackground(RED);
+		textcolor(YELLOW);
+		clrscr();
+
+
+  }
+
+
+void color()
+{ X1=saanp.x1;
+  X2=saanp.x2;
+  Y1=saanp.y1;
+  Y2=saanp.y2;
+}
+void nocolor()
+{
+
+  X_1=saanp.x1;
+  X_2=saanp.x2;
+  Y_1=saanp.y1;
+  Y_2=saanp.y2;
+
+}
+
+void file()
+{
+  fstream f;
+  f.open("data.dat",ios::binary|ios::in);
+  while(1)
+  {f.read((char*)&are,sizeof(are));
+   if(f.eof())
+   break;
+   if(are.horz==i && are.vert==j)
+   break;
+  }
+  f.close();
+
+}
+void change()
+{ saanp.x1=are.x1;
+  saanp.x2=are.x2;
+  saanp.y1=are.y1;
+  saanp.y2=are.y2;
+}
+
+void function(int line,int dir,int k=0)
+{    if(line==0)
+    { switch(dir)
+      { case 0:if(k==0)
+	       i++;
+	       else
+	       i--;
+	       saanp.no=are.horz;
+	       break;
+	case 1: j++;
+	       saanp.no=are.vert;
+	       break;
+	case -1:j--;
+	       saanp.no=are.vert;
+
+	       break;
+
+
+      }
+    }
+    else
+    { switch(dir)
+      { case 0:if(k==0)
+	       j++;
+	       else
+	       j--;
+	       saanp.no=are.vert;
+	       break;
+	case 1: i++;
+	       saanp.no=are.horz;
+	       break;
+	case -1:  i--;
+	       saanp.no=are.horz;
+	       break;
+
+
+      }
+    }
+    nocursor(X1,Y1,X2,Y2);
+    file();
+    //nocursor(X1,Y1,X2,Y2);
+   // cout<<X1<<" "<<X2<<" "<<Y1<<" "<<Y2;
+//    nocolor();
+    change();
+
+    color();
+
+    //cout<<X1<<" "<<X2<<" "<<Y1<<" "<<Y2<<endl;
+     cursor(X1,Y1,X2,Y2);
+    //
+
+    //cout<<X_1<<" "<<X_2<<" "<<Y_1<<" "<<Y_2<<endl;
+    //cout<<X1<<" "<<X2<<" "<<Y1<<" "<<Y2;
+
+}
+
+void main()
+{ clrscr();
+box(1,1,60,35);
+
+i=5,j=5;
+int line=0,c=0,dir=0,k=0,q=0;
+file();
+change();
+color();
+
+cursor(X1,Y1,X2,Y2);
+
+//nocursor(X1,Y1,X2,Y2);
+
+char ch;
+
+do
+{
+	while(!kbhit())
+	{  function(line,dir,k);
+
+	delay(500);
+
+	}
+	if(kbhit())
+	{
+		ch=getch();
+		if(ch==0)
+		ch=getch();
+
+
+		switch(line)
+		{ case 1:switch(ch)
+				{ case 77:dir=1;
+
+					  k=0;
+					  function(line,dir);
+					  line=0;
+				      break;
+				  case 75:dir=-1;
+
+					  k=1;
+					  function(line,dir);
+					  line=0;
+					  break;
+				 case 27:c=1;
+					   break;
+				   }
+			 break;
+		  case 0:switch(ch)
+				{ case 72: dir=-1;
+
+					k=0;
+				    function(line,dir);
+					line=1;
+					break;
+				   case 80:dir=1;
+
+					k=1;
+					function(line,dir);
+					line=1;
+					break;
+				   case 27:c=1;
+					   break;
+				}
+			break;
+
+
+		  }
+
+	  }
+	}while(c==0);
+
+}
