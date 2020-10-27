@@ -4,7 +4,7 @@ void nocursor(int x1,int y1,int x2,int y2)
 	{     textmode(C4350);
 		window(x1+1,y1+1,x2-1,y2-1);
 		textbackground(CYAN);
-	       //	textcolor(LIGHTGREEN);
+	    	textcolor(LIGHTGREEN);
 		clrscr();
 
 	}
@@ -13,7 +13,7 @@ void cursor(int x1,int y1,int x2,int y2)
 	{     textmode(C4350);
 		window(x1+1,y1+1,x2-1,y2-1);
 		textbackground(BLUE);
-	       //	textcolor(LIGHTGREEN);
+	   	textcolor(LIGHTGREEN);
 		clrscr();
 
 	}

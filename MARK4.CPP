@@ -17,7 +17,7 @@ void cursor(int x1,int y1,int x2,int y2,int value=0)
 	{     textmode(C4350);
 		window(x1+1,y1+1,x2-1,y2-1);
 		textbackground(BLUE);
-	       //	textcolor(LIGHTGREEN);
+	    	textcolor(LIGHTGREEN);
 		clrscr();
 		window(x1+2.5,y1+2.5,x1+2.5,y1+3.5);
 		cout<<value;
